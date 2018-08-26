@@ -1,7 +1,9 @@
 // 获取文件的后缀名
 // String : indexOf(searchValue[, fromeIndex])    : 正向
 // String : lastIndexOf(searchValue[, fromeIndex]): 反向  如果返账-1，代表没找到
+
 // String : slice(beginIndex[, endIndex]) :  返回新符合的新字符串
+// String : split([separator[, limit]])  : 返回按separator分隔的limit个数组
 
 function fileExtension (fileName) {
     const postion = fileName.lastIndexOf('.');    
