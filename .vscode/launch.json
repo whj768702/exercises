@@ -7,7 +7,7 @@
         "type": "node",
         "request": "launch",
         "name": "启动程序",
-        "program": "${workspaceFolder}/js/${fileBasenameNoExtension}.js"
+        "program": "${fileDirname}/${fileBasenameNoExtension}.js"
     }, {
         "type": "node",
         "request": "launch",
