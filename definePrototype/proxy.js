@@ -1,4 +1,4 @@
-let onWatch = (obj, setBind, getLogger) =>{
+let onWatch = (obj, setBind, getLogger) => {
   let handler = {
     get(target, property, receiver) {
       getLogger(target, property);
@@ -15,10 +15,11 @@ let obj = {
   a: 1
 };
 let value;
-let p = onWatch(obj, (v)=>{
+let p = onWatch(obj, (v) => {
   value = v;
-}, (target, property)=>{
+}, (target, property) => {
   console.log(`Get '${property}' = ${target[property]}`);
 });
 p.a = 2;
 console.log(p.a);
+p.b = 12;
