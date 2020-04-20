@@ -75,7 +75,7 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
       self.resolvedCallbacks.push(function () {
         try {
           var x = onResolved(self.value);
-          resolutionProcedure(promise2, resolve, reject);
+          resolutionProcedure(promise2, x, resolve, reject);
         } catch (r) {
           reject(r);
         }
@@ -135,3 +135,10 @@ function resolutionProcedure(promise2, x, resolve, reject) {
     resolve(x);
   }
 }
+
+let a = new MyPromise(function(resolve, reject) {
+  setTimeout(()=>{
+    resolve(100);
+  }, 5000);
+});
+a.then((data)=>{console.log(data);return 200}).then(console.log);
