@@ -1,0 +1,40 @@
+<!-- 生成器遍历DOM树 -->
+<!-- 这个案例是一个相当好的例子， 因为它还告诉了我们如何在不必使
+用回调函数的情况下， 使用生成器函数来解耦代码， 从而将生产值（本
+例中是HTML节点） 的代码和消费值（本例中的for-of循环打印、 访问过
+的节点） 的代码分隔开。 除此之外， 在很多场景下， 使用迭代器比使用
+递归都要自然， 所以保持一个开放的思路很重要。 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="subTree">
+    <form>
+      <input type="text">
+    </form>
+    <p>Paragraph</p>
+  </div>
+  <script>
+    function* DomTraversal(element) {
+      yield element;
+      element = element.firstElementChild;
+      while (element) {
+        yield* DomTraversal(element);
+        element = element.nextElementSibling;
+      }
+    }
+    const subTree = document.getElementById('subTree');
+    for (let element of DomTraversal(subTree)) {
+      console.log('element: ', element.nodeName);
+    }
+  </script>
+</body>
+
+</html>
