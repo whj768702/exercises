@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      border: 1px solid tomato;
+      height: 100px;
+    }
+
+    #outer {
+      border: 1px solid blue;
+      height: 80px;
+    }
+
+    #inner {
+      border: 1px solid orange;
+      height: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="outer">
+    <div id="inner"></div>
+  </div>
+
+  <script>
+    const innerElement = document.querySelector('#inner');
+    const outerElement = document.querySelector('#outer');
+    const bodyElement = document.querySelector('body');
+
+    innerElement.addEventListener('click', function () {
+      console.log('Inner');
+    });
+    outerElement.addEventListener('click', function () {
+      console.log('Outer');
+    }, true);
+
+    bodyElement.addEventListener('click', function () {
+      console.log('Body');
+    });
+
+    /**
+     * 点击inner,打印是：Outer Inner Body
+     * innerElement与bodyElement上的单击处理器都注册为冒泡模式，
+     * 而outerElement元素上的是捕获模式。当处理事件时，首先从顶部
+     * 开始调用捕获模式的处理器。第一条消息将是Outer。事件到达目标
+     * 元素时，即inner元素，事件转变成冒泡模式。因此，第二条消息是Inner,
+     * 第三条是Body.
+     */
+  </script>
+</body>
+
+</html>
