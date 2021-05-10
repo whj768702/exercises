@@ -1,4 +1,4 @@
-import initList from "./生成链表.mjs";
+import { initList } from "./生成链表.mjs";
 
 let successor;
 

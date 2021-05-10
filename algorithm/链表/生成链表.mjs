@@ -4,14 +4,27 @@ class ListNode {
     this.next = null;
   }
 }
-export default function initList(length) {
-  let result = new ListNode(0);
+function initList(length) {
+  let result = new ListNode(1);
   let header = result;
   for (let i = 1; i < length; i++) {
-    header.next = new ListNode(i);
+    header.next = new ListNode(i + 1);
     header = header.next;
   }
   return result;
 }
-const result = initList(4);
-console.log(result);
+
+function initReverseList(length) {
+  let result = new ListNode(length);
+  let header = result;
+  for (let i = length; i > 0; i--) {
+    header.next = new ListNode(i - 1);
+    header = header.next;
+  }
+  return result;
+}
+
+export {
+  initList,
+  initReverseList,
+}
