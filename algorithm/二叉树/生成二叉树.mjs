@@ -47,4 +47,4 @@ function initBinaryTree(arr) {
 // const result = initBinaryTree([19, 8, 15, 24, 45, 12, 5]);
 // console.log(result);
 
-export { initBinaryTree };
+export { TreeNode, initBinaryTree };
