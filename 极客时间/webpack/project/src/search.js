@@ -8,7 +8,7 @@ const Search = () => {
   return (
     <div className="search-text">
       <img src={logo} width="100" height="50" />
-      Search Text
+      Search Text watch
     </div>
   );
 };
