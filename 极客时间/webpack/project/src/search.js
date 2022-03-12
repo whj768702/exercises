@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './search.less';
 import logo from './images/webpack-logo.svg';
+import '../meta.html';
 const Search = () => {
   return (
     <div className="search-text">

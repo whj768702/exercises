@@ -64,6 +64,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.html$/,
+        type: 'asset/source',
+      },
     ],
   },
   plugins: [
