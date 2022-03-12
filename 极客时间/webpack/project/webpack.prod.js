@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -62,5 +63,6 @@ module.exports = {
   ],
   optimization: {
     moduleIds: 'named',
+    minimizer: [new CssMinimizerPlugin()], // css压缩 https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/
   },
 };
