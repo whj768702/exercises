@@ -11,7 +11,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
   },
-  mode: 'production', // production | development | none
+  mode: 'development', // production | development | none
   module: {
     rules: [
       {

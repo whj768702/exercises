@@ -4,6 +4,7 @@
     // Describes the environments you support/target for your project.
     ["@babel/preset-env", {
       "targets": "defaults"
-    }]
+    }],
+    ["@babel/preset-react"]
   ]
 }
