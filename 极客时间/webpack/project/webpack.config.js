@@ -11,4 +11,22 @@ module.exports = {
     filename: '[name].js',
   },
   mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              // 描述项目支持/瞄准的环境。https://babeljs.io/docs/en/options#targets
+              // Describes the environments you support/target for your project.
+              ['@babel/preset-env', { targets: { chrome: '90' } }],
+            ],
+          },
+        },
+      },
+    ],
+  },
 };

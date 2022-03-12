@@ -1,3 +1,3 @@
-import { HelloWorld } from './helloworld';
+import HelloWorld from './helloworld';
 
 document.write(HelloWorld());

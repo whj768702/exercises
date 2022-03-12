@@ -1,3 +1,5 @@
-export function HelloWorld() {
-  return 'HelloWorld';
+function HelloWorld() {
+  const str = 'HelloWorld';
+  return str;
 }
+export default HelloWorld;
