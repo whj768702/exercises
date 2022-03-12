@@ -2,9 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './search.css';
 
 const Search = () => {
-  return <div>Search Text</div>;
+  return <div className="search-text">Search Text</div>;
 };
 
 ReactDOM.render(<Search />, document.getElementById('root'));
