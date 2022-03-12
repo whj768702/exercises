@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { webpack } = require('webpack');
 
 module.exports = {
   entry: {
@@ -47,4 +48,15 @@ module.exports = {
       template: 'index.html',
     }),
   ],
+  optimization: {
+    moduleIds: 'named',
+  },
+  devServer: {
+    // https://webpack.js.org/configuration/dev-server
+    // 和原来老配置不一样了
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    hot: true,
+  },
 };
