@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { webpack } = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -26,7 +26,9 @@ module.exports = {
         test: /\.css$/,
         use: [
           // Inject CSS into the DOM. 将CSS注入到DOM中。
-          'style-loader',
+          // 'style-loader',
+          // 将ccs独立到一个css文件中
+          MiniCssExtractPlugin.loader,
           // The css-loader interprets @import and url() like import/require() and will resolve them.
           //css-loader对@import和url()的解释就像import/require()一样，并会解决它们。
           'css-loader',
@@ -34,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -46,6 +48,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       publicPath: './',
       template: 'index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name]_[chunkhash:8].css',
     }),
   ],
   optimization: {
