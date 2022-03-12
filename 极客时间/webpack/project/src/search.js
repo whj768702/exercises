@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './search.css';
+import './search.less';
 
 const Search = () => {
   return <div className="search-text">Search Text</div>;
