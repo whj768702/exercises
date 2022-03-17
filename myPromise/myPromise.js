@@ -1,6 +1,6 @@
-const PENDING = "pending";
-const RESOLVED = "resolved";
-const REJECTED = "rejected";
+const PENDING = 'pending';
+const RESOLVED = 'resolved';
+const REJECTED = 'rejected';
 
 function MyPromise(fn) {
   let _this = this;
@@ -17,20 +17,20 @@ function MyPromise(fn) {
       if (_this.currentState === PENDING) {
         _this.currentState = RESOLVED;
         _this.value = value;
-        _this.resolvedCallbacks.forEach(cb => cb());
+        _this.resolvedCallbacks.forEach((cb) => cb());
       }
     });
-  }
+  };
 
   _this.reject = function (reason) {
     setTimeout(() => {
       if (_this.currentState === PENDING) {
         _this.currentState = REJECTED;
         _this.value = reason;
-        _this.rejectedCallbacks.forEach(cb => cb());
+        _this.rejectedCallbacks.forEach((cb) => cb());
       }
     });
-  }
+  };
 
   try {
     fn(_this.resolve, _this.reject);
@@ -42,10 +42,13 @@ function MyPromise(fn) {
 MyPromise.prototype.then = function (onResolved, onRejected) {
   let self = this;
   let promise2;
-  onResolved = typeof onResolved === "function" ? onResolved : v => v;
-  onRejected = typeof onRejected === "function" ? onRejected : r => {
-    throw r
-  };
+  onResolved = typeof onResolved === 'function' ? onResolved : (v) => v;
+  onRejected =
+    typeof onRejected === 'function'
+      ? onRejected
+      : (r) => {
+          throw r;
+        };
   if (self.currentState === RESOLVED) {
     return (promise2 = new MyPromise(function (resolve, reject) {
       setTimeout(function () {
@@ -95,7 +98,7 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
 
 function resolutionProcedure(promise2, x, resolve, reject) {
   if (promise2 === x) {
-    return reject(new TypeError("Error"));
+    return reject(new TypeError('Error'));
   }
   if (x instanceof MyPromise) {
     if (x.currentState === PENDING) {
@@ -109,18 +112,22 @@ function resolutionProcedure(promise2, x, resolve, reject) {
   }
 
   let called = false;
-  if (x !== null && (typeof x === "object" || typeof x === "function")) {
+  if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
     try {
       let then = x.then;
-      if (typeof then === "function") {
-        then.call(x, y => {
-          if (called) return;
-          resolutionProcedure(promise2, y, resolve, reject);
-        }, e => {
-          if (called) return;
-          called = true;
-          reject(e);
-        });
+      if (typeof then === 'function') {
+        then.call(
+          x,
+          (y) => {
+            if (called) return;
+            resolutionProcedure(promise2, y, resolve, reject);
+          },
+          (e) => {
+            if (called) return;
+            called = true;
+            reject(e);
+          }
+        );
       } else {
         resolve(x);
       }
@@ -136,9 +143,25 @@ function resolutionProcedure(promise2, x, resolve, reject) {
   }
 }
 
-let a = new MyPromise(function(resolve, reject) {
-  setTimeout(()=>{
-    resolve(100);
-  }, 5000);
-});
-a.then((data)=>{console.log(data);return 200}).then(console.log);
+// let a = new MyPromise(function (resolve, reject) {
+//   setTimeout(() => {
+//     resolve(100);
+//   }, 5000);
+// });
+// a.then((data) => {
+//   console.log(data);
+//   return 200;
+// }).then(console.log);
+
+MyPromise.deferred = function () {
+  const defer = {};
+  defer.promise = new MyPromise((resolve, reject) => {
+    defer.resolve = resolve;
+    defer.reject = reject;
+  });
+  return defer;
+};
+
+try {
+  module.exports = MyPromise;
+} catch (e) {}
