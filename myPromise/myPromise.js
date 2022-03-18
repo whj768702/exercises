@@ -54,7 +54,7 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
       setTimeout(function () {
         try {
           var x = onResolved(self.value);
-          resolutionProcedure(promise2, resolve, reject);
+          resolutionProcedure(promise2, x, resolve, reject);
         } catch (reason) {
           reject(reason);
         }
@@ -66,7 +66,7 @@ MyPromise.prototype.then = function (onResolved, onRejected) {
       setTimeout(function () {
         try {
           var x = onRejected(self.value);
-          resolutionProcedure(promise2, resolve, reject);
+          resolutionProcedure(promise2, x, resolve, reject);
         } catch (reason) {
           reject(reason);
         }
@@ -120,6 +120,7 @@ function resolutionProcedure(promise2, x, resolve, reject) {
           x,
           (y) => {
             if (called) return;
+            called = true;
             resolutionProcedure(promise2, y, resolve, reject);
           },
           (e) => {
@@ -135,7 +136,7 @@ function resolutionProcedure(promise2, x, resolve, reject) {
       if (called) {
         return;
       }
-      called = true;
+      // called = true;
       reject(e);
     }
   } else {
