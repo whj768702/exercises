@@ -1,6 +1,6 @@
 function print(a, b) {
-  console.log('old value: ', a);
-  console.log('new value: ', b);
+  console.log('new value: ', a);
+  console.log('old value: ', b);
 }
 function defineReactive(data, key, val) {
   let dep = [];
