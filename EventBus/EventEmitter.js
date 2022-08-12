@@ -20,7 +20,7 @@ class EventEmitter {
         handler.apply(this, args);
       } else {
         handler.call(this);
-      }
+      }EventBus/EventEmitter.js
     }
     return true;
   }
