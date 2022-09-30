@@ -1,5 +1,9 @@
 {
   "editor.fontSize": 18,
   "editor.formatOnSave": true,
-  "oneDarkPro.italic": false
+  "oneDarkPro.italic": false,
+  "files.exclude": {
+    "**/*.js": {"when": "$(basename).ts"},
+    "**/*.map": true,
+  }
 }

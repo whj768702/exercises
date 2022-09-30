@@ -18,7 +18,13 @@
       "type": "node",
       "request": "launch",
       "name": "启动TS",
-      "program": "${workspaceFolder}/ts/build/${fileBasenameNoExtension}.js"
+      // "program": "${workspaceFolder}/ts/${fileBasenameNoExtension}.js",
+      "program": "${fileDirname}/${fileBasenameNoExtension}.js",
+      "preLaunchTask": "tsc-current",
+      // "preLaunchTask": {
+      //   "task": "ts-build"
+      // },
+      "outFiles": ["${workspaceFolder}/**/*.js"]
     }
   ]
 }
