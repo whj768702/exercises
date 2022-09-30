@@ -1,3 +1,5 @@
 ts/build/*
+ts/类型体操/*.js
+ts/类型体操/*.map
 node_modules
 dist
